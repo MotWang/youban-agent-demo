@@ -1,0 +1,11 @@
+{
+  "name": "youban-agent-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Runnable package for the YouBan cultural tourism AI demo.",
+  "scripts": {
+    "start": "node server.js",
+    "start:classic": "node server.js --open=\"/游伴 Agent Demo.html\"",
+    "start:ota": "node server.js --open=\"/游伴 Agent Demo - OTA风.html\""
+  }
+}
