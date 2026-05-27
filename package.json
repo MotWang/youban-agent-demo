@@ -1,9 +1,14 @@
 {
   "name": "youban-agent-demo",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "private": true,
   "description": "YouBan Agent — cultural travel companion demo.",
   "scripts": {
+    "build": "node scripts/build-demo.js",
     "start": "node server.js --open=/demo.html"
+  },
+  "devDependencies": {
+    "@babel/core": "7.26.9",
+    "@babel/preset-react": "7.26.3"
   }
 }
