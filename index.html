@@ -9,10 +9,10 @@
   html, body { margin: 0; min-height: 100%; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans SC", "Segoe UI", system-ui, sans-serif;
-    color: #182027;
+    color: #0f1411;
     background:
-      radial-gradient(circle at top left, rgba(91, 130, 103, 0.18), transparent 32rem),
-      linear-gradient(135deg, #fbfaf6 0%, #eef3f6 100%);
+      radial-gradient(circle at top left, rgba(26, 196, 154, 0.14), transparent 32rem),
+      linear-gradient(135deg, #f5f6f4 0%, #ecede9 100%);
   }
   main {
     width: min(980px, calc(100vw - 40px));
@@ -21,7 +21,7 @@
   }
   .eyebrow {
     margin: 0 0 12px;
-    color: #5b8267;
+    color: #0f9d7a;
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.12em;
@@ -36,7 +36,7 @@
   .lead {
     max-width: 680px;
     margin: 18px 0 36px;
-    color: #5f686f;
+    color: #4a544c;
     font-size: 18px;
     line-height: 1.7;
   }
@@ -52,26 +52,34 @@
     padding: 28px;
     text-decoration: none;
     color: inherit;
-    background: rgba(255, 255, 255, 0.78);
-    border: 1px solid rgba(24, 32, 39, 0.08);
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(15, 20, 17, 0.08);
     border-radius: 24px;
-    box-shadow: 0 20px 60px rgba(24, 32, 39, 0.08);
+    box-shadow: 0 20px 60px rgba(15, 20, 17, 0.08);
     backdrop-filter: blur(18px);
     transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
   }
   .card:hover {
     transform: translateY(-4px);
-    border-color: rgba(91, 130, 103, 0.36);
-    box-shadow: 0 26px 70px rgba(24, 32, 39, 0.12);
+    border-color: rgba(26, 196, 154, 0.45);
+    box-shadow: 0 26px 70px rgba(15, 20, 17, 0.12);
+  }
+  .card.featured {
+    border-color: rgba(26, 196, 154, 0.35);
+    box-shadow: 0 24px 64px rgba(26, 196, 154, 0.12);
   }
   .tag {
     width: fit-content;
     padding: 5px 10px;
     border-radius: 999px;
-    background: #e9efe9;
-    color: #34503e;
+    background: #e6f7f1;
+    color: #0f9d7a;
     font-size: 12px;
     font-weight: 700;
+  }
+  .tag.muted {
+    background: #eef0eb;
+    color: #4a544c;
   }
   .card h2 {
     margin: 22px 0 10px;
@@ -86,19 +94,19 @@
   .cta {
     margin-top: auto;
     padding-top: 28px;
-    color: #34503e;
+    color: #0f9d7a;
     font-weight: 800;
   }
   .note {
     margin-top: 28px;
-    color: #7a838b;
+    color: #8a948e;
     font-size: 14px;
     line-height: 1.7;
   }
   code {
     padding: 2px 6px;
     border-radius: 6px;
-    background: rgba(24, 32, 39, 0.08);
+    background: rgba(15, 20, 17, 0.08);
   }
 </style>
 </head>
@@ -106,25 +114,25 @@
 <main>
   <p class="eyebrow">YouBan Agent Demo</p>
   <h1>游伴 Agent<br />文旅 AI 演示</h1>
-  <p class="lead">选择一个版本进入演示。建议使用本地启动脚本或 <code>npm start</code> 打开，避免浏览器直接读取本地文件导致 JSX 加载失败。</p>
+  <p class="lead">推荐从<strong>文旅风 v2</strong>进入：单手机可点击原型，覆盖愿望输入、方案对比、今日地图、同行提醒、动态重排与文化解释全流程。建议使用本地启动脚本或 <code>npm start</code> 打开，避免浏览器直接读取本地文件导致 JSX 加载失败。</p>
 
   <section class="grid" aria-label="Demo entries">
-    <a class="card" href="游伴 Agent Demo.html">
-      <span class="tag">经典展示风</span>
-      <h2>双手机画布版</h2>
-      <p>适合课程展示与答辩，强调七层架构、动态反馈、评分权重和方案解释。</p>
-      <span class="cta">打开演示</span>
+    <a class="card featured" href="游伴 Agent Demo - 文旅风 v2.html">
+      <span class="tag">推荐 · 文旅风 v2</span>
+      <h2>单手机可点击原型</h2>
+      <p>纸墨薄荷视觉体系，严格按 Figma 导航：home → prefs → plans → trip → alert → replan → detail，含架构侧栏与动态反馈演示。</p>
+      <span class="cta">打开演示 →</span>
     </a>
 
     <a class="card" href="游伴 Agent Demo - OTA风.html">
-      <span class="tag">OTA 实用风</span>
+      <span class="tag muted">OTA 实用风</span>
       <h2>单手机产品版</h2>
       <p>更接近真实旅游产品页面，突出搜索、AI 追问、行程卡片和智能调整流程。</p>
       <span class="cta">打开演示</span>
     </a>
   </section>
 
-  <p class="note">首次打开需要联网加载 React、Babel 和字体 CDN。页面启动后不依赖后端接口，演示数据都在本地文件中。</p>
+  <p class="note">首次打开需要联网加载 React、Babel 和字体 CDN。页面启动后不依赖后端接口，演示数据都在 <code>data.js</code> 中。课程设计说明见 <code>spec.txt</code>。</p>
 </main>
 </body>
 </html>

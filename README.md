@@ -1,6 +1,16 @@
 # 游伴 Agent Demo
 
-这是一个可直接运行、也可以部署到 GitHub Pages 的文旅 AI 演示包。
+这是一个可直接运行、也可以部署到 GitHub Pages 的文旅 AI 演示包。**文旅风 v2** 为当前主推版本。
+
+## 在线访问
+
+部署完成后访问：
+
+```txt
+https://MotWang.github.io/youban-agent-demo/
+```
+
+入口页会引导进入 **文旅风 v2** 单手机可点击原型。
 
 ## 在线部署到 GitHub Pages
 
@@ -9,17 +19,6 @@
 3. 打开仓库的 `Settings` -> `Pages`。
 4. 在 `Build and deployment` 里把 `Source` 选为 `GitHub Actions`。
 5. 回到 `Actions`，等待 `Deploy to GitHub Pages` 工作流完成。
-6. 完成后访问：
-
-```txt
-https://MotWang.github.io/youban-agent-demo/
-```
-
-部署完成后，公开访问地址通常是：
-
-```txt
-https://MotWang.github.io/youban-agent-demo/
-```
 
 这个 Demo 是纯静态页面，不需要 GitHub 服务器运行 Node.js 后端。GitHub Pages 只负责托管文件，页面逻辑会在访问者的浏览器里运行。
 
@@ -46,7 +45,9 @@ chmod +x start.command start.sh
 npm start
 ```
 
-启动后访问：
+默认打开文旅风 v2：`游伴 Agent Demo - 文旅风 v2.html`
+
+启动后也可访问入口页：
 
 ```txt
 http://127.0.0.1:5173
@@ -55,24 +56,33 @@ http://127.0.0.1:5173
 ## 可选入口
 
 ```sh
-npm run start:classic
+npm run start:v2
 ```
 
-打开双手机画布版：`游伴 Agent Demo.html`
+文旅风 v2（推荐）：`游伴 Agent Demo - 文旅风 v2.html`
 
 ```sh
 npm run start:ota
 ```
 
-打开单手机 OTA 实用风版本：`游伴 Agent Demo - OTA风.html`
+OTA 实用风：`游伴 Agent Demo - OTA风.html`
+
+```sh
+npm run start:classic
+```
+
+经典双手机画布版（旧版）：`游伴 Agent Demo.html`
 
 ## 目录说明
 
-- `index.html`：演示入口页。
-- `游伴 Agent Demo.html`：经典展示风版本。
+- `index.html`：演示入口页（推荐文旅风 v2）。
+- `游伴 Agent Demo - 文旅风 v2.html`：文旅风 v2 单手机可点击原型（主推）。
 - `游伴 Agent Demo - OTA风.html`：OTA 实用风版本。
+- `游伴 Agent Demo.html`：经典双手机展示风（旧版，保留备查）。
+- `spec.txt`：模块 3+4 重构设计与技术架构说明。
 - `data.js`：静态演示数据。
-- `app*.jsx`、`screens*.jsx`、`ios-frame.jsx`、`tweaks-panel.jsx`：页面与组件代码。
+- `app-v2.jsx`、`screens-v2.jsx`：文旅风 v2 页面与组件。
+- `app*.jsx`、`screens*.jsx`、`ios-frame.jsx`、`tweaks-panel.jsx`：其他版本代码。
 - `server.js`：零依赖本地静态服务器。
 
 ## 注意事项
