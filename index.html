@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>游伴 Agent Demo</title>
+<title>游伴 Agent</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; }
   html, body { margin: 0; min-height: 100%; }
@@ -11,128 +11,174 @@
     font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans SC", "Segoe UI", system-ui, sans-serif;
     color: #0f1411;
     background:
-      radial-gradient(circle at top left, rgba(26, 196, 154, 0.14), transparent 32rem),
-      linear-gradient(135deg, #f5f6f4 0%, #ecede9 100%);
+      radial-gradient(ellipse 80% 50% at 10% 0%, rgba(26, 196, 154, 0.12), transparent),
+      linear-gradient(160deg, #f5f6f4 0%, #ecede9 100%);
   }
   main {
-    width: min(980px, calc(100vw - 40px));
+    width: min(720px, calc(100vw - 48px));
     margin: 0 auto;
-    padding: 72px 0;
+    padding: 88px 0 96px;
   }
-  .eyebrow {
-    margin: 0 0 12px;
-    color: #0f9d7a;
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 28px;
     font-size: 13px;
     font-weight: 700;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.08em;
+    color: #0f9d7a;
     text-transform: uppercase;
+  }
+  .brand::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #1ac49a;
   }
   h1 {
     margin: 0;
-    font-size: clamp(36px, 5vw, 64px);
-    line-height: 1.05;
-    letter-spacing: -0.05em;
+    font-size: clamp(40px, 7vw, 56px);
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+    font-weight: 800;
   }
-  .lead {
-    max-width: 680px;
-    margin: 18px 0 36px;
+  .tagline {
+    margin: 20px 0 0;
+    font-size: clamp(18px, 3vw, 22px);
+    line-height: 1.55;
     color: #4a544c;
-    font-size: 18px;
-    line-height: 1.7;
+    font-weight: 500;
   }
-  .grid {
+  .pitch {
+    margin: 32px 0 0;
+    padding: 24px 28px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(15, 20, 17, 0.07);
+    border-radius: 20px;
+    font-size: 16px;
+    line-height: 1.75;
+    color: #1f2520;
+  }
+  .pitch strong { color: #0f1411; font-weight: 700; }
+  h2 {
+    margin: 48px 0 20px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #8a948e;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 18px;
+    gap: 12px;
   }
-  .card {
+  li {
     display: flex;
-    flex-direction: column;
-    min-height: 230px;
-    padding: 28px;
-    text-decoration: none;
-    color: inherit;
-    background: rgba(255, 255, 255, 0.88);
-    border: 1px solid rgba(15, 20, 17, 0.08);
-    border-radius: 24px;
-    box-shadow: 0 20px 60px rgba(15, 20, 17, 0.08);
-    backdrop-filter: blur(18px);
-    transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 18px 20px;
+    background: rgba(255, 255, 255, 0.65);
+    border: 1px solid rgba(15, 20, 17, 0.06);
+    border-radius: 16px;
+    font-size: 15px;
+    line-height: 1.55;
+    color: #1f2520;
   }
-  .card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(26, 196, 154, 0.45);
-    box-shadow: 0 26px 70px rgba(15, 20, 17, 0.12);
-  }
-  .card.featured {
-    border-color: rgba(26, 196, 154, 0.35);
-    box-shadow: 0 24px 64px rgba(26, 196, 154, 0.12);
-  }
-  .tag {
-    width: fit-content;
-    padding: 5px 10px;
-    border-radius: 999px;
+  li span.num {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
     background: #e6f7f1;
     color: #0f9d7a;
     font-size: 12px;
-    font-weight: 700;
-  }
-  .tag.muted {
-    background: #eef0eb;
-    color: #4a544c;
-  }
-  .card h2 {
-    margin: 22px 0 10px;
-    font-size: 26px;
-    letter-spacing: -0.03em;
-  }
-  .card p {
-    margin: 0;
-    color: #667079;
-    line-height: 1.6;
-  }
-  .cta {
-    margin-top: auto;
-    padding-top: 28px;
-    color: #0f9d7a;
     font-weight: 800;
   }
-  .note {
-    margin-top: 28px;
+  li em {
+    display: block;
+    margin-top: 4px;
+    font-style: normal;
+    font-size: 13px;
     color: #8a948e;
-    font-size: 14px;
-    line-height: 1.7;
   }
-  code {
-    padding: 2px 6px;
-    border-radius: 6px;
-    background: rgba(15, 20, 17, 0.08);
+  .cta-wrap { margin-top: 52px; }
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    text-decoration: none;
+    color: #fff;
+    background: #0f1411;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 700;
+    box-shadow: 0 16px 40px rgba(15, 20, 17, 0.18);
+    transition: transform 160ms ease, box-shadow 160ms ease;
+  }
+  .cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 48px rgba(15, 20, 17, 0.22);
+  }
+  .cta::after { content: '→'; font-size: 18px; }
+  .footer {
+    margin-top: 40px;
+    font-size: 13px;
+    color: #b8beb9;
   }
 </style>
 </head>
 <body>
 <main>
-  <p class="eyebrow">YouBan Agent Demo</p>
-  <h1>游伴 Agent<br />文旅 AI 演示</h1>
-  <p class="lead">推荐从<strong>文旅风 v2</strong>进入：单手机可点击原型，覆盖愿望输入、方案对比、今日地图、同行提醒、动态重排与文化解释全流程。建议使用本地启动脚本或 <code>npm start</code> 打开，避免浏览器直接读取本地文件导致 JSX 加载失败。</p>
+  <p class="brand">YouBan Agent</p>
+  <h1>游伴 Agent</h1>
+  <p class="tagline">城市文化旅行中的连续决策旅伴</p>
 
-  <section class="grid" aria-label="Demo entries">
-    <a class="card featured" href="游伴 Agent Demo - 文旅风 v2.html">
-      <span class="tag">推荐 · 文旅风 v2</span>
-      <h2>单手机可点击原型</h2>
-      <p>纸墨薄荷视觉体系，严格按 Figma 导航：home → prefs → plans → trip → alert → replan → detail，含架构侧栏与动态反馈演示。</p>
-      <span class="cta">打开演示 →</span>
-    </a>
+  <p class="pitch">
+    游伴不是攻略生成器，也不是订房比价工具。它理解你<strong>为什么想出发</strong>，把模糊愿望变成可走的方案；当天气、体力或同行偏好发生变化时，<strong>主动提出调整并说明理由</strong>，把最终决定权留给你；站在每一站时，帮你<strong>看懂值得看什么</strong>。
+  </p>
 
-    <a class="card" href="游伴 Agent Demo - OTA风.html">
-      <span class="tag muted">OTA 实用风</span>
-      <h2>单手机产品版</h2>
-      <p>更接近真实旅游产品页面，突出搜索、AI 追问、行程卡片和智能调整流程。</p>
-      <span class="cta">打开演示</span>
-    </a>
-  </section>
+  <h2>一次完整旅程</h2>
+  <ul>
+    <li>
+      <span class="num">1</span>
+      <div>说出愿望<em>时间、节奏与文化偏好</em></div>
+    </li>
+    <li>
+      <span class="num">2</span>
+      <div>确认同行与约束<em>把「轻松」「有文化感」变成可执行的画像</em></div>
+    </li>
+    <li>
+      <span class="num">3</span>
+      <div>对比行程方案<em>多路线并排，每条都有推荐理由</em></div>
+    </li>
+    <li>
+      <span class="num">4</span>
+      <div>今日地图与监测<em>空间关系一目了然，持续感知变化</em></div>
+    </li>
+    <li>
+      <span class="num">5</span>
+      <div>同行提醒与动态重排<em>识别冲突、给出替代、等待你确认</em></div>
+    </li>
+    <li>
+      <span class="num">6</span>
+      <div>看懂这一站<em>三段式文化解读，不堆砌百科</em></div>
+    </li>
+  </ul>
 
-  <p class="note">首次打开需要联网加载 React、Babel 和字体 CDN。页面启动后不依赖后端接口，演示数据都在 <code>data.js</code> 中。课程设计说明见 <code>spec.txt</code>。</p>
+  <div class="cta-wrap">
+    <a class="cta" href="游伴 Agent Demo - 文旅风 v2.html">开始体验</a>
+  </div>
+
+  <p class="footer">Project 2 · 文旅场景 AI 交互设计演示</p>
 </main>
 </body>
 </html>

@@ -1,96 +1,21 @@
-# 游伴 Agent Demo
+# 游伴 Agent
 
-这是一个可直接运行、也可以部署到 GitHub Pages 的文旅 AI 演示包。**文旅风 v2** 为当前主推版本。
+**城市文化旅行中的连续决策旅伴。**
 
-## 在线访问
+游伴理解你为什么想出发，把模糊愿望变成可走的方案；在天气变化、体力消耗或同行偏好冲突时，主动提出调整并说明理由；站在每一站，帮你建立「为什么值得看、重点看哪里」的理解，而不是堆砌信息。
 
-部署完成后访问：
+## 在线体验
 
-```txt
 https://MotWang.github.io/youban-agent-demo/
-```
 
-入口页会引导进入 **文旅风 v2** 单手机可点击原型。
+## 本地体验
 
-## 在线部署到 GitHub Pages
-
-1. 仓库地址：`https://github.com/MotWang/youban-agent-demo`
-2. 把本文件夹里的所有文件上传到仓库根目录，确保 `index.html` 在仓库根目录。
-3. 打开仓库的 `Settings` -> `Pages`。
-4. 在 `Build and deployment` 里把 `Source` 选为 `GitHub Actions`。
-5. 回到 `Actions`，等待 `Deploy to GitHub Pages` 工作流完成。
-
-这个 Demo 是纯静态页面，不需要 GitHub 服务器运行 Node.js 后端。GitHub Pages 只负责托管文件，页面逻辑会在访问者的浏览器里运行。
-
-## 快速运行
-
-### macOS
-
-双击 `start.command`，浏览器会自动打开入口页。
-
-如果系统提示没有执行权限，可以在当前目录运行：
-
-```sh
-chmod +x start.command start.sh
-./start.command
-```
-
-### Windows
-
-双击 `start.bat`，浏览器会自动打开入口页。
-
-### 命令行通用方式
+双击 `start.command`（macOS）或 `start.bat`（Windows），也可运行：
 
 ```sh
 npm start
 ```
 
-默认打开文旅风 v2：`游伴 Agent Demo - 文旅风 v2.html`
+## 仓库
 
-启动后也可访问入口页：
-
-```txt
-http://127.0.0.1:5173
-```
-
-## 可选入口
-
-```sh
-npm run start:v2
-```
-
-文旅风 v2（推荐）：`游伴 Agent Demo - 文旅风 v2.html`
-
-```sh
-npm run start:ota
-```
-
-OTA 实用风：`游伴 Agent Demo - OTA风.html`
-
-```sh
-npm run start:classic
-```
-
-经典双手机画布版（旧版）：`游伴 Agent Demo.html`
-
-## 目录说明
-
-- `index.html`：演示入口页（推荐文旅风 v2）。
-- `游伴 Agent Demo - 文旅风 v2.html`：文旅风 v2 单手机可点击原型（主推）。
-- `游伴 Agent Demo - OTA风.html`：OTA 实用风版本。
-- `游伴 Agent Demo.html`：经典双手机展示风（旧版，保留备查）。
-- `spec.txt`：模块 3+4 重构设计与技术架构说明。
-- `data.js`：静态演示数据。
-- `app-v2.jsx`、`screens-v2.jsx`：文旅风 v2 页面与组件。
-- `app*.jsx`、`screens*.jsx`、`ios-frame.jsx`、`tweaks-panel.jsx`：其他版本代码。
-- `server.js`：零依赖本地静态服务器。
-
-## 注意事项
-
-- 首次运行需要联网加载 React、ReactDOM、Babel 和 Google Fonts CDN。
-- 这个 Demo 没有后端接口，所有交互和数据都在本地静态文件中。
-- 如果端口 `5173` 被占用，可以运行：
-
-```sh
-npm start -- --port=5174
-```
+https://github.com/MotWang/youban-agent-demo
