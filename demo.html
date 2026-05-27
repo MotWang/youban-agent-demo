@@ -2,14 +2,14 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=1440" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>游伴 Agent</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
+  html, body { margin: 0; padding: 0; min-height: 100%; }
   body {
     font-family: -apple-system, "PingFang SC", "Noto Sans SC", "Manrope", system-ui, sans-serif;
     background: #f5f6f4;
@@ -19,6 +19,16 @@
   }
   button { font-family: inherit; }
   input[type="range"] { cursor: pointer; }
+  #root { min-height: 100vh; }
+  #boot-fallback {
+    display: none;
+    max-width: 420px;
+    margin: 48px auto;
+    padding: 24px;
+    text-align: center;
+    color: #4a544c;
+    line-height: 1.6;
+  }
   @keyframes spin { to { transform: rotate(360deg); } }
   @keyframes pulse {
     0%, 100% { transform: scale(1); opacity: 1; }
@@ -28,25 +38,58 @@
   ::-webkit-scrollbar-thumb { background: #d4d7dc; border-radius: 4px; }
   ::-webkit-scrollbar-track { background: transparent; }
 </style>
-
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.9/babel.min.js" crossorigin></script>
 </head>
 <body>
 
 <div id="root"></div>
+<p id="boot-fallback">演示加载中…若长时间空白，请刷新页面并确认网络可访问 unpkg.com。</p>
 
 <script src="data.js"></script>
-<script type="text/babel" src="app-v2.jsx"></script>
-<script type="text/babel" src="screens-v2.jsx"></script>
+<script type="text/babel" data-presets="react" src="ios-frame.jsx"></script>
+<script type="text/babel" data-presets="react" src="app-v2.jsx"></script>
+<script type="text/babel" data-presets="react" src="screens-v2.jsx"></script>
 
-<script type="text/babel">
-  setTimeout(() => {
-    const App = window.V2.V2App;
+<script>
+(function mountDemo() {
+  const fallback = document.getElementById('boot-fallback');
+  let tries = 0;
+
+  function ready() {
+    return window.React && window.ReactDOM && window.V2 && window.V2.V2App && window.SCREENS;
+  }
+
+  function showFallback(msg) {
+    fallback.style.display = 'block';
+    fallback.textContent = msg;
+  }
+
+  function tryMount() {
+    if (!ready()) {
+      tries += 1;
+      if (tries > 120) {
+        showFallback('演示加载失败，请刷新后重试。');
+        return;
+      }
+      setTimeout(tryMount, 100);
+      return;
+    }
+
+    fallback.style.display = 'none';
     const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(<App />);
-  }, 150);
+    root.render(React.createElement(window.V2.V2App));
+  }
+
+  if (!window.Babel) {
+    showFallback('脚本库未加载，请检查网络后刷新。');
+    return;
+  }
+
+  fallback.style.display = 'block';
+  tryMount();
+})();
 </script>
 
 </body>
