@@ -6,7 +6,8 @@
 
 ## 在线体验
 
-https://MotWang.github.io/youban-agent-demo/
+- 介绍页：https://MotWang.github.io/youban-agent-demo/
+- 演示：https://MotWang.github.io/youban-agent-demo/demo.html
 
 ## 本地体验
 

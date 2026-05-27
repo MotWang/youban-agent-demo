@@ -4,6 +4,6 @@
   "private": true,
   "description": "YouBan Agent — cultural travel companion demo.",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js --open=/demo.html"
   }
 }
